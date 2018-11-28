@@ -1,0 +1,11 @@
+1.mock fetch请求，使用 import fetchMock from 'fetch-mock'; 渲染render()中包含的子组件，使用 import ReactTestUtils from 'react-dom/test-utils';
+2.在写react的单元测试的过程中，参考了此文档，http://www.ruanyifeng.com/blog/2016/02/react-testing-tutorial.html，由于文档编写的时间太靠前，
+而技术不断的更新，所以有的地方和实际情况不尽相同，比如TestUtils已经从react-addons-test-utils，移动到了{ReactTestUtils} |'react-dom/test-utils';
+3.尽量以官方文档为准：https://reactjs.org/docs/test-utils.html#scryrenderedcomponentswithtype
+4.查找页面上的节点，使用，
+const component = ReactTeatUtils.renderIntoDocument(<Component />);
+let items = ReactTeatUtils.scryRenderedDOMComponentsWithTag(component, 'input');
+如果页面存在多个上述定义的items，就是用数组形式，找到指定元素进行点击
+ReactTeatUtils.Simulate.click(items[1])
+
+5.未解决的问题，上传文件的函数类无法写单元测试，mock不知道如何设置超时
